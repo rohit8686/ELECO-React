@@ -121,13 +121,7 @@ export function Filters() {
           id="above4"
           className="rating"
           onChange={() => productDispatch({ type: "RATING", payload: 4 })}
-          checked={
-            productState.rating === ""
-              ? false
-              : productState.rating === 4
-              ? true
-              : false
-          }
+          checked={productState.rating === 4}
         />
         <label htmlFor="above4">4 Stars and above</label>
       </div>
@@ -138,13 +132,7 @@ export function Filters() {
           name="rating"
           id="above3"
           onChange={() => productDispatch({ type: "RATING", payload: 3 })}
-          checked={
-            productState.rating === ""
-              ? false
-              : productState.rating === 3
-              ? true
-              : false
-          }
+          checked={productState.rating === 3}
         />
         <label htmlFor="above3">3 Stars and above</label>
       </div>
@@ -154,13 +142,7 @@ export function Filters() {
           name="rating"
           id="above2"
           onChange={() => productDispatch({ type: "RATING", payload: 2 })}
-          checked={
-            productState.rating === ""
-              ? false
-              : productState.rating === 2
-              ? true
-              : false
-          }
+          checked={productState.rating === 2}
         />
         <label htmlFor="above2">2 Stars and above</label>
       </div>
@@ -171,13 +153,7 @@ export function Filters() {
           name="rating"
           id="above1"
           onChange={() => productDispatch({ type: "RATING", payload: 1 })}
-          checked={
-            productState.rating === ""
-              ? false
-              : productState.rating === 1
-              ? true
-              : false
-          }
+          checked={productState.rating === 1}
         />
         <label htmlFor="above1">1 Star and above</label>
       </div>
@@ -191,13 +167,7 @@ export function Filters() {
           onChange={() =>
             productDispatch({ type: "SORT", payload: "LOW_TO_HIGH" })
           }
-          checked={
-            productState.sort === ""
-              ? false
-              : productState.sort === "LOW_TO_HIGH"
-              ? true
-              : false
-          }
+          checked={productState.sort === "LOW_TO_HIGH"}
         />
         <label htmlFor="lowtohigh">Price - Low to High</label>
       </div>
@@ -209,13 +179,7 @@ export function Filters() {
           onChange={() =>
             productDispatch({ type: "SORT", payload: "HIGH_TO_LOW" })
           }
-          checked={
-            productState.sort === ""
-              ? false
-              : productState.sort === "HIGH_TO_LOW"
-              ? true
-              : false
-          }
+          checked={productState.sort === "HIGH_TO_LOW"}
         />
         <label htmlFor="hightolow">Price - High to Low</label>
       </div>
