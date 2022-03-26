@@ -1,0 +1,37 @@
+.cart-container {
+  width: 90%;
+  margin: 0 auto;
+}
+.price-card {
+  width: 30%;
+}
+.cartitems-container {
+  width: 80%;
+}
+.qty-btn {
+  background: none;
+  border: none;
+}
+.sticky {
+  position: sticky;
+}
+.round-btn {
+  border: 1.5px solid var(--black-color);
+  background-color: var(--white-color);
+  border-radius: 50%;
+  width: 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 900;
+}
+.small-input {
+  width: 2rem;
+}
+.inline {
+  display: inline;
+}
+@media screen and (max-width: 780px) {
+  .price-card {
+    width: 50%;
+  }
+}

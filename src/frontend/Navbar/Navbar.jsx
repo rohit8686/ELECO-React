@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
+import { useCart } from "../contexts/cart-context";
 import { useProduct } from "../contexts/product-context";
 import { useWishlist } from "../contexts/wishlist-context";
 
 export function Navbar() {
   const { productDispatch } = useProduct();
-  const { wishlistState} = useWishlist();
+  const { wishlistState } = useWishlist();
   const { wishlistData } = wishlistState;
   const { logout } = useAuth();
+  const { cartState } = useCart();
+  const { cartData } = cartState;
 
   return (
     <nav className="nav flex space-between">
@@ -59,7 +62,7 @@ export function Navbar() {
             <span className="material-icons-outlined span icon icon-size">
               shopping_cart
             </span>
-            <div className="number status flex busy">0</div>
+            <div className="number status flex busy">{cartData.length}</div>
           </div>
         </Link>
       </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useWishlist } from "../../contexts/wishlist-context";
+import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
 import { Login } from "../Login/Login";
 
 function EmptyWishList() {
@@ -10,8 +10,12 @@ function EmptyWishList() {
   );
 }
 export function Wishlist() {
+  const { filteredData } = useProduct();
   const { wishlistState, removeFromWishlist } = useWishlist();
   const { wishlistData } = wishlistState;
+  const { cartState, addToCart } = useCart();
+  const { cartData } = cartState;
+
   if (!localStorage.getItem("userToken")) {
     return <Login />;
   }
@@ -52,9 +56,28 @@ export function Wishlist() {
                   </p>
                   <p className="discount">{discount}% off</p>
                 </div>
-                <button className={`btn btn-primary cart-btn`}>
+                <button
+                  className={`btn btn-primary cart-btn ${
+                    cartData.some((cartItem) => cartItem._id === _id)
+                      ? "hide"
+                      : ""
+                  }`}
+                  onClick={() => addToCart(_id, filteredData)}
+                >
                   Add to Cart
                 </button>
+
+                <Link to="/cart">
+                  <button
+                    className={`btn btn-primary cart-btn ${
+                      cartData.some((cartItem) => cartItem._id === _id)
+                        ? ""
+                        : "hide"
+                    }`}
+                  >
+                    Go to cart
+                  </button>
+                </Link>
               </div>
             );
           })}
