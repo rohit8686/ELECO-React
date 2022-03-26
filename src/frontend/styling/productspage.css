@@ -1,0 +1,8 @@
+@import "https://eleco.netlify.app/pages/products/products.css";
+
+.wishlisted {
+  color: var(--danger-color);
+}
+.clear-filter {
+  cursor: pointer;
+}
