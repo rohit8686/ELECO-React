@@ -1,9 +1,12 @@
 import React from "react";
 import { useProduct } from "../../../contexts/product-context";
 import { ClipLoader } from "react-spinners";
+import { useWishlist } from "../../../contexts/wishlist-context";
 
 export function Products() {
   const { productState, filteredData } = useProduct();
+  const { wishlistState, addToWishlist, removeFromWishlist } = useWishlist();
+  const { wishlistData } = wishlistState;
 
   return (
     <main className="main-content p-1">
@@ -27,9 +30,28 @@ export function Products() {
                   <div className="flex space-between">
                     <h3>{name}</h3>
                     <span
-                      className={`material-icons-outlined span icon icon-size`}
+                      className={`material-icons-outlined span icon icon-size  ${
+                        wishlistData.some(
+                          (wishListItem) => wishListItem._id === _id
+                        )
+                          ? "hide"
+                          : ""
+                      }`}
+                      onClick={() => addToWishlist(_id, filteredData)}
                     >
                       favorite_border
+                    </span>
+                    <span
+                      className={`material-icons-outlined span icon icon-size wishlisted ${
+                        wishlistData.some(
+                          (wishListItem) => wishListItem._id === _id
+                        )
+                          ? ""
+                          : "hide"
+                      }`}
+                      onClick={() => removeFromWishlist(_id)}
+                    >
+                      favorite
                     </span>
                   </div>
                   <p className="price">

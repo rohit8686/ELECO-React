@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import { useProduct } from "../contexts/product-context";
+import { useWishlist } from "../contexts/wishlist-context";
 
 export function Navbar() {
   const { productDispatch } = useProduct();
+  const { wishlistState} = useWishlist();
+  const { wishlistData } = wishlistState;
   const { logout } = useAuth();
 
   return (
@@ -48,7 +51,7 @@ export function Navbar() {
             <span className="material-icons span icon icon-size">
               favorite_border
             </span>
-            <div className="number status flex busy">0</div>
+            <div className="number status flex busy">{wishlistData.length}</div>
           </div>
         </Link>
         <Link to="/cart" className="link">
