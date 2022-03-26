@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
 import { useProduct } from "../contexts/product-context";
 
 export function Navbar() {
   const { productDispatch } = useProduct();
+  const { logout } = useAuth();
 
   return (
     <nav className="nav flex space-between">
@@ -32,6 +34,14 @@ export function Navbar() {
             Login
           </button>
         </Link>
+        <button
+          className={`btn btn-error ${
+            localStorage.getItem("userToken") ? "" : "hide"
+          }`}
+          onClick={logout}
+        >
+          Logout
+        </button>
 
         <Link to="/wishlist" className="link">
           <div className="badge">
