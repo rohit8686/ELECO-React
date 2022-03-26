@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userData");
-    authDispatch({ type: "RESET_FORM" });
+    authDispatch({ type: "CLEAR_AUTH_DATA" });
     navigate("/");
   };
 
@@ -91,6 +91,8 @@ const AuthProvider = ({ children }) => {
         return { ...authState, password: action.payload };
       case "RESET_FORM":
         return { ...authState, email: "", password: "" };
+      case "CLEAR_AUTH_DATA":
+        return { ...initialState };
       case "ERROR":
         return { ...authState, errorMsg: action.payload };
       case "TEST_CREDENTIALS":
