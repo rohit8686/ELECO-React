@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { ProductProvider } from "./frontend/contexts/product-context";
-import { AuthProvider } from "./frontend/contexts/auth-context";
-import { WishlistProvider } from "./frontend/contexts/wishlist-context";
+import {
+  CartProvider,
+  WishlistProvider,
+  AuthProvider,
+  ProductProvider,
+} from "./frontend/contexts/providers-export";
 
 // Call make Server
 makeServer();
@@ -16,7 +18,9 @@ ReactDOM.render(
     <AuthProvider>
       <ProductProvider>
         <WishlistProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </WishlistProvider>
       </ProductProvider>
     </AuthProvider>

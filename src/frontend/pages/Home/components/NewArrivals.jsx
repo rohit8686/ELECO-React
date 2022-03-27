@@ -1,12 +1,18 @@
 import React from "react";
 import { ClipLoader } from "react-spinners";
-import { useProduct } from "../../../contexts/product-context";
-import { useWishlist } from "../../../contexts/wishlist-context";
+import {
+  useCart,
+  useProduct,
+  useWishlist,
+} from "../../../contexts/hooks-export";
+import { Link } from "react-router-dom";
 
 export const NewArrivals = () => {
   const { filteredData, productState, productsData } = useProduct();
   const { wishlistState, addToWishlist, removeFromWishlist } = useWishlist();
   const { wishlistData } = wishlistState;
+  const { cartState, addToCart } = useCart();
+  const { cartData } = cartState;
   return (
     <div>
       <h2 className="text-center pt-1" id="new-arrivals">
@@ -64,9 +70,27 @@ export const NewArrivals = () => {
                     </p>
                     <p className="discount">{discount}% off</p>
                   </div>
-                  <button className={`btn btn-primary cart-btn`}>
+                  <button
+                    className={`btn btn-primary cart-btn ${
+                      cartData.some((cartItem) => cartItem._id === _id)
+                        ? "hide"
+                        : ""
+                    }`}
+                    onClick={() => addToCart(_id, filteredData)}
+                  >
                     Add to Cart
                   </button>
+                  <Link to="/cart">
+                    <button
+                      className={`btn btn-primary cart-btn ${
+                        cartData.some((cartItem) => cartItem._id === _id)
+                          ? ""
+                          : "hide"
+                      }`}
+                    >
+                      Go to cart
+                    </button>
+                  </Link>
                 </div>
               );
             } else return "";
