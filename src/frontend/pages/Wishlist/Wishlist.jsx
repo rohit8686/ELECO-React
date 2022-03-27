@@ -33,14 +33,18 @@ export function Wishlist() {
           wishlistData.map(({ discount, _id, image, name, price }) => {
             return (
               <div className="card card-width" key={_id}>
-                <img
-                  className="img-border img-dimensions newarrivals-img"
-                  src={image}
-                  alt="wishlist data"
-                />
+                <Link to={`/products/${_id}`} className="link">
+                  <img
+                    className="img-border img-dimensions newarrivals-img"
+                    src={image}
+                    alt="wishlist data"
+                  />
+                </Link>
                 <div className="p-1">
                   <div className="flex space-between">
-                    <h3>{name}</h3>
+                    <Link to={`/products/${_id}`} className="link">
+                      <h3>{name}</h3>
+                    </Link>
                     <span
                       onClick={() => removeFromWishlist(_id)}
                       className="material-icons span icon icon-size wishlisted"
@@ -48,13 +52,15 @@ export function Wishlist() {
                       favorite
                     </span>
                   </div>
-                  <p className="price">
-                    &#8377; {Math.round(price - (discount * price) / 100)}
-                  </p>
-                  <p className="mrp-price">
-                    MRP: <strike>&#8377;{price}</strike>
-                  </p>
-                  <p className="discount">{discount}% off</p>
+                  <Link to={`/products/${_id}`} className="link">
+                    <p className="price">
+                      &#8377; {Math.round(price - (discount * price) / 100)}
+                    </p>
+                    <p className="mrp-price">
+                      MRP: <strike>&#8377;{price}</strike>
+                    </p>
+                    <p className="discount">{discount}% off</p>
+                  </Link>
                 </div>
                 <button
                   className={`btn btn-primary cart-btn ${

@@ -47,20 +47,24 @@ export function Cart() {
             {cartData.map(({ discount, _id, image, name, price }) => {
               return (
                 <div className="card card-width" key={_id}>
-                  <img
-                    className="img-border img-dimensions newarrivals-img"
-                    src={image}
-                    alt="cart"
-                  />
+                  <Link to={`/products/${_id}`} className="link">
+                    <img
+                      className="img-border img-dimensions newarrivals-img"
+                      src={image}
+                      alt="cart"
+                    />
+                  </Link>
                   <div className="p-1">
-                    <h3>{name}</h3>
-                    <p className="price">
-                      &#8377; {Math.round(price - (discount * price) / 100)}
-                    </p>
-                    <p className="mrp-price">
-                      MRP: <strike>&#8377;{price}</strike>
-                    </p>
-                    <p className="discount pb-1">{discount}% off</p>
+                    <Link to={`/products/${_id}`} className="link">
+                      <h3>{name}</h3>
+                      <p className="price">
+                        &#8377; {Math.round(price - (discount * price) / 100)}
+                      </p>
+                      <p className="mrp-price">
+                        MRP: <strike>&#8377;{price}</strike>
+                      </p>
+                      <p className="discount pb-1">{discount}% off</p>
+                    </Link>
                     <h4 className="inline">Quantity : </h4>
                     <button
                       className="round-btn"
