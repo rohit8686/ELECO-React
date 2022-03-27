@@ -8,6 +8,7 @@ import { Signup } from "../pages/Signup/Signup";
 import { Wishlist } from "../pages/Wishlist/Wishlist";
 import { Cart } from "../pages/Cart/Cart";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
+import { Product } from "../pages/Product/Product";
 
 export const Routing = () => {
   return (
@@ -19,6 +20,7 @@ export const Routing = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/products/:productId" element={<Product />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
