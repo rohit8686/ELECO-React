@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./auth-context";
+import { toastContainer } from "../Toast/toast";
 
 const CartContext = createContext();
 const useCart = () => useContext(CartContext);
@@ -53,6 +54,7 @@ const CartProvider = ({ children }) => {
           type: "UPDATE_CART_DATA",
           payload: res.data.cart,
         });
+        toastContainer("Added to Cart", "success");
       } catch (e) {
         cartDispatch({
           type: "CART_ERROR",
@@ -74,6 +76,7 @@ const CartProvider = ({ children }) => {
         type: "UPDATE_CART_DATA",
         payload: res.data.cart,
       });
+      toastContainer("Removed from cart", "info");
     } catch (e) {
       console.log(e);
       cartDispatch({
@@ -108,6 +111,9 @@ const CartProvider = ({ children }) => {
           type: "UPDATE_CART_DATA",
           payload: res.data.cart,
         });
+        incrementOrDecrement === "decrement"
+          ? toastContainer("Cart quantity decremented", "info")
+          : toastContainer("Cart quantity incremented", "success");
       } catch (e) {
         cartDispatch({
           type: "CART_ERROR",

@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "./auth-context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toastContainer } from "../Toast/toast";
 
 const WishlistContext = createContext();
 const useWishlist = () => useContext(WishlistContext);
@@ -56,6 +57,7 @@ const WishlistProvider = ({ children }) => {
           type: "UPDATE_WISHLIST_DATA",
           payload: res.data.wishlist,
         });
+        toastContainer("Added to wishlist", "success");
       } catch (e) {
         wishlistDispatch({
           type: "WISHLIST_ERROR",
@@ -81,6 +83,7 @@ const WishlistProvider = ({ children }) => {
         type: "UPDATE_WISHLIST_DATA",
         payload: res.data.wishlist,
       });
+      toastContainer("Removed from wishlist", "info");
     } catch (e) {
       console.log(e);
       wishlistDispatch({
