@@ -10,5 +10,22 @@
 * Address Management - [https://eleco-react.netlify.app/address](https://eleco-react.netlify.app/address)
 * Checkout Page - [https://eleco-react.netlify.app/checkout](https://eleco-react.netlify.app/checkout)
 
+## Features
+
+* Landing page containing products based on categories and new arrivals
+* Products page with products from different categories, filters ( rating, category, price), sort by price
+* Search products
+* Single product page
+* Add and remove from wishlist
+* Add and remove from cart
+* Manage wishlist items from wishlist page
+* Manage cart items from cart page
+* Increase cart items quantity
+* Authentication - Login, Signup, Logout
+* Address page to manage address
+* Add or delete address
+* Checkout page with order details
+
 ## Live Link :
+
 https://eleco-react.netlify.app
