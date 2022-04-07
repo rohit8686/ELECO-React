@@ -85,8 +85,12 @@ export const Product = () => {
               </button>
               <h3 className="pt-1 pb-1">About this item :</h3>
               <ul>
-                {desc.map((data) => {
-                  return <li className="pb-1">{data}</li>;
+                {desc.map((data, index) => {
+                  return (
+                    <li className="pb-1" key={index}>
+                      {data}
+                    </li>
+                  );
                 })}
               </ul>
             </div>
