@@ -1,13 +1,10 @@
-import "../../styling/cartpage.css";
-import { Link } from "react-router-dom";
-import { Login } from "../Login/Login";
+import React from "react";
 import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
+import { Link } from "react-router-dom";
+import "./checkout.css";
 import { ToastContainer } from "react-toastify";
 
-function EmptyCart() {
-  return <h1 className="flex pt-1">Your Cart is empty !</h1>;
-}
-export function Cart() {
+export const Checkout = () => {
   const { filteredData } = useProduct();
   const { wishlistState, addToWishlist } = useWishlist();
   const { wishlistData } = wishlistState;
@@ -26,25 +23,62 @@ export function Cart() {
   );
   const deliveryCharge = 100;
 
-  if (!localStorage.getItem("userToken")) {
-    return <Login />;
-  }
-
   return (
     <div>
-      <h2 className="text-center">My Cart</h2>
-      <div className="underline"></div>
-      {cartData.length !== 0 && (
-        <p className="flex">({cartData.length} items in cart)</p>
-      )}
-      <Link to="/products" className="flex link pt-1">
-        <button className="btn btn-primary">Go to Products</button>
-      </Link>
-      {cartData.length === 0 && <EmptyCart />}
+      <h1 class="text-center">Checkout</h1>
+      <div class="underline"></div>
+      <div class="flex cartitems-container mx-auto">
+        <div class="card p-1 align-self-start">
+          <h3 class="pb-1">Price Details</h3>
+          <hr />
+          <div class="flex space-between pt-1">
+            <p>Price ({cartData.length} items)</p>
+            <p>&#8377; {totalPrice}</p>
+          </div>
+          <div class="flex space-between pt-1">
+            <p>Discount</p>
+            <p>- &#8377;{totalDiscount}</p>
+          </div>
+          <div class="flex space-between pb-1 pt-1">
+            <p>Delivery Charges</p>
+            <p>&#8377; {deliveryCharge}</p>
+          </div>
+          <hr />
+          <div class="flex space-between pb-1 pt-1">
+            <h3>Total Amount</h3>
+            <h3>&#8377; {totalPrice - totalDiscount + deliveryCharge}</h3>
+          </div>
+          <hr />
+          <p class="pt-1 pb-1">You're saving {totalDiscount} on this order !</p>
+          <button class="btn btn-primary full-width">Proceed to Buy</button>
+        </div>
+        <div class="card p-1">
+          <h3>Home Address</h3>
+          <hr class="hr" />
+          <p>
+            D No : 11-2/33, Plot : 243, Behind Railway School, Vizag, Andhra
+            Pradesh.
+          </p>
+          <p class="pt-1">
+            Pincode :<strong> 530199</strong>
+          </p>
+          <p class="pt-1">
+            Phone : <strong>9249348953</strong>
+          </p>
+          <p class="pt-1">
+            Email : <strong>qwerty@gmail.com</strong>
+          </p>
+          <div class="flex space-between pt-1">
+            <a href="/Pages/Address/address.html" class="link">
+              <button class="btn btn-primary">Edit</button>
+            </a>
+          </div>
+        </div>
+      </div>
 
       {cartData.length !== 0 && (
-        <div className="flex flex-start no-wrap cart-width cart-container pt-1 pb-1">
-          <div className="flex align-self-start cartitems-container">
+        <div className="flex p-1">
+          <div className="flex cartitems-container">
             {cartData.map(({ discount, _id, image, name, price }) => {
               return (
                 <div className="card card-width" key={_id}>
@@ -108,44 +142,9 @@ export function Cart() {
               );
             })}
           </div>
-          <div className="card card-width p-1 align-self-start sticky price-card">
-            <h3 className="pb-1">Price Details</h3>
-            <hr />
-            <div className="flex space-between pt-1">
-              <p>Price ({cartData.length} items)</p>
-              <p>&#8377; {totalPrice}</p>
-            </div>
-            <div className="flex space-between pt-1">
-              <p>Discount</p>
-              <p>
-                - &#8377;
-                {totalDiscount}
-              </p>
-            </div>
-            <div className="flex space-between pb-1 pt-1">
-              <p>Delivery Charges</p>
-              <p>&#8377; {deliveryCharge}</p>
-            </div>
-            <hr />
-            <div className="flex space-between pb-1 pt-1">
-              <h3>Total Amount</h3>
-              <h3>&#8377; {totalPrice - totalDiscount + deliveryCharge}</h3>
-            </div>
-            <hr />
-            <p className="pt-1 pb-1">
-              You're saving {totalDiscount} on this order !
-            </p>
-            <div className="flex pt-1">
-              <Link to="/checkout">
-                <button className="btn btn-primary full-width">
-                  Place Order
-                </button>
-              </Link>
-            </div>
-          </div>
         </div>
       )}
       <ToastContainer />
     </div>
   );
-}
+};
