@@ -17,7 +17,6 @@ export const Address = () => {
     lastName,
     email,
     phone,
-    type,
     address,
     city,
     state,

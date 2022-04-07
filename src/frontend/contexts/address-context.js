@@ -70,7 +70,7 @@ const AddressProvider = ({ children }) => {
         navigate("/login");
       }
     })();
-  }, [localStorage.getItem("userToken")]);
+  }, [encodedToken, navigate, userData]);
 
   function addressReducer(addressState, action) {
     switch (action.type) {
