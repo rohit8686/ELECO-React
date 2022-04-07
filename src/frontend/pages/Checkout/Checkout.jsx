@@ -1,6 +1,11 @@
 import React from "react";
-import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
-import { Link } from "react-router-dom";
+import {
+  useCart,
+  useProduct,
+  useWishlist,
+  useAddress,
+} from "../../contexts/hooks-export";
+import { Link, useNavigate } from "react-router-dom";
 import "./checkout.css";
 import { ToastContainer } from "react-toastify";
 
@@ -10,6 +15,15 @@ export const Checkout = () => {
   const { wishlistData } = wishlistState;
   const { cartState, removeFromCart, handleCartQuantity } = useCart();
   const { cartData } = cartState;
+  const {
+    addressState: { addresses, selectedAddress },
+  } = useAddress();
+  const { email, phone, type, address, city, state, pincode, error } =
+    selectedAddress ||
+      (addresses.length >= 1 && addresses[0]) || {
+        error: "Add atleast one address",
+      };
+  const navigate = useNavigate();
 
   const totalDiscount = cartData.reduce(
     (totalDiscount, cartItem) =>
@@ -23,11 +37,15 @@ export const Checkout = () => {
   );
   const deliveryCharge = 100;
 
+  if (cartData.length === 0) {
+    navigate("/products");
+  }
+
   return (
     <div>
       <h1 className="text-center">Checkout</h1>
       <div className="underline"></div>
-      <div className="flex cartitems-container mx-auto">
+      <div className="flex cart-width">
         <div className="card p-1 align-self-start">
           <h3 className="pb-1">Price Details</h3>
           <hr />
@@ -54,28 +72,39 @@ export const Checkout = () => {
           </p>
           <button className="btn btn-primary full-width">Proceed to Buy</button>
         </div>
-        <div className="card p-1">
-          <h3>Home Address</h3>
-          <hr className="hr" />
-          <p>
-            D No : 11-2/33, Plot : 243, Behind Railway School, Vizag, Andhra
-            Pradesh.
-          </p>
-          <p className="pt-1">
-            Pincode :<strong> 530199</strong>
-          </p>
-          <p className="pt-1">
-            Phone : <strong>9249348953</strong>
-          </p>
-          <p className="pt-1">
-            Email : <strong>qwerty@gmail.com</strong>
-          </p>
-          <div className="flex space-between pt-1">
-            <a href="/Pages/Address/address.html" className="link">
-              <button className="btn btn-primary">Edit</button>
-            </a>
+        {error && (
+          <div>
+            <h2>{error}</h2>
+            <div className="flex">
+              <Link to="/address">
+                <button className="btn btn-primary">Manage Address</button>
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
+        {!error && (
+          <div className="card p-1">
+            <h3>{type} Address</h3>
+            <hr className="hr" />
+            <p>
+              {address}, {city}, {state}
+            </p>
+            <p className="pt-1">
+              Pincode :<strong> {pincode}</strong>
+            </p>
+            <p className="pt-1">
+              Phone : <strong>{phone}</strong>
+            </p>
+            <p className="pt-1">
+              Email : <strong>{email}</strong>
+            </p>
+            <div className="flex space-between pt-1">
+              <Link to="/address">
+                <button className="btn btn-primary">Manage Address</button>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
 
       {cartData.length !== 0 && (

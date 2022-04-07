@@ -8,6 +8,7 @@ import {
   WishlistProvider,
   AuthProvider,
   ProductProvider,
+  AddressProvider,
 } from "./frontend/contexts/providers-export";
 
 // Call make Server
@@ -19,7 +20,9 @@ ReactDOM.render(
       <ProductProvider>
         <WishlistProvider>
           <CartProvider>
-            <App />
+            <AddressProvider>
+              <App />
+            </AddressProvider>
           </CartProvider>
         </WishlistProvider>
       </ProductProvider>

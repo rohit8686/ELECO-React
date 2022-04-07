@@ -10,6 +10,7 @@ import { Cart } from "../pages/Cart/Cart";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import { Product } from "../pages/Product/Product";
 import { Checkout } from "../pages/Checkout/Checkout";
+import { Address } from "../pages/Address/Address";
 
 export const Routing = () => {
   return (
@@ -23,6 +24,7 @@ export const Routing = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/:productId" element={<Product />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/address" element={<Address />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
