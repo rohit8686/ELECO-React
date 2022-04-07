@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
 import { Login } from "../Login/Login";
 
@@ -88,6 +89,7 @@ export function Wishlist() {
             );
           })}
       </div>
+      <ToastContainer />
     </div>
   );
 }

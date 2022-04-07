@@ -2,6 +2,7 @@ import "../../styling/cartpage.css";
 import { Link } from "react-router-dom";
 import { Login } from "../Login/Login";
 import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
+import { ToastContainer } from "react-toastify";
 
 function EmptyCart() {
   return <h1 className="flex pt-1">Your Cart is empty !</h1>;
@@ -144,6 +145,7 @@ export function Cart() {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

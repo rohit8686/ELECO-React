@@ -2,6 +2,7 @@ import React from "react";
 import "../../styling/productpage.css";
 import { Link, useParams } from "react-router-dom";
 import { useCart, useWishlist, useProduct } from "../../contexts/hooks-export";
+import { ToastContainer } from "react-toastify";
 
 export const Product = () => {
   const { productId } = useParams();
@@ -102,6 +103,7 @@ export const Product = () => {
           </Link>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
