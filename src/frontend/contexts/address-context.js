@@ -66,8 +66,6 @@ const AddressProvider = ({ children }) => {
             console.log("Address load error is", e);
           }
         }
-      } else {
-        navigate("/login");
       }
     })();
   }, [encodedToken, navigate, userData]);
