@@ -64,13 +64,13 @@ const AuthProvider = ({ children }) => {
         email: authState.email,
         password: authState.password,
       });
-      const { foundUser, encodedToken } = data;
+      const { createdUser, encodedToken } = data;
       if (status === 201) {
         localStorage.setItem("userToken", encodedToken);
-        localStorage.setItem("userData", JSON.stringify(foundUser));
+        localStorage.setItem("userData", JSON.stringify(createdUser));
         authDispatch({
           type: "USER_DATA",
-          payload: { foundUser, encodedToken },
+          payload: { createdUser, encodedToken },
         });
         authDispatch({ type: "RESET_FORM" });
         navigate("/");
