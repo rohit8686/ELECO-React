@@ -72,6 +72,10 @@ const CartProvider = ({ children }) => {
         headers: { authorization: encodedToken },
       });
       cartDispatch({ type: "CART_DATA", payload: res.data.cart });
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({ ...userData, cart: res.data.cart })
+      );
       authDispatch({
         type: "UPDATE_CART_DATA",
         payload: res.data.cart,
