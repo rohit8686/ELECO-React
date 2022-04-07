@@ -1,8 +1,17 @@
 @import "https://eleco.netlify.app/pages/products/products.css";
-
+:root{
+  --red-hover : #ff0000;
+  --blue-hover : #1e40af;
+}
 .wishlisted {
   color: var(--danger-color);
 }
 .clear-filter {
   cursor: pointer;
+}
+.btn-primary:hover{
+  background-color: var(--blue-hover);
+}
+.btn-error:hover{
+  background-color: var(--red-hover);
 }

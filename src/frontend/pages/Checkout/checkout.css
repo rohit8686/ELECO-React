@@ -1,0 +1,26 @@
+.cart-width {
+    width: 80%;
+    margin: 0 auto;
+}
+.round-btn {
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
+    border-radius: 50%;
+    width: 1.5rem;
+    cursor: pointer;
+    font-weight: 900;
+}
+.mx-auto{
+    margin: 0 auto;
+}
+.full-width {
+    width: 100%;
+}
+
+.small-input {
+    width: 2rem;
+}
+
+.inline {
+    display: inline;
+}
