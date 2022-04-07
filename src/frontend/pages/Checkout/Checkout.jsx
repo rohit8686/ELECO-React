@@ -25,52 +25,54 @@ export const Checkout = () => {
 
   return (
     <div>
-      <h1 class="text-center">Checkout</h1>
-      <div class="underline"></div>
-      <div class="flex cartitems-container mx-auto">
-        <div class="card p-1 align-self-start">
-          <h3 class="pb-1">Price Details</h3>
+      <h1 className="text-center">Checkout</h1>
+      <div className="underline"></div>
+      <div className="flex cartitems-container mx-auto">
+        <div className="card p-1 align-self-start">
+          <h3 className="pb-1">Price Details</h3>
           <hr />
-          <div class="flex space-between pt-1">
+          <div className="flex space-between pt-1">
             <p>Price ({cartData.length} items)</p>
             <p>&#8377; {totalPrice}</p>
           </div>
-          <div class="flex space-between pt-1">
+          <div className="flex space-between pt-1">
             <p>Discount</p>
             <p>- &#8377;{totalDiscount}</p>
           </div>
-          <div class="flex space-between pb-1 pt-1">
+          <div className="flex space-between pb-1 pt-1">
             <p>Delivery Charges</p>
             <p>&#8377; {deliveryCharge}</p>
           </div>
           <hr />
-          <div class="flex space-between pb-1 pt-1">
+          <div className="flex space-between pb-1 pt-1">
             <h3>Total Amount</h3>
             <h3>&#8377; {totalPrice - totalDiscount + deliveryCharge}</h3>
           </div>
           <hr />
-          <p class="pt-1 pb-1">You're saving {totalDiscount} on this order !</p>
-          <button class="btn btn-primary full-width">Proceed to Buy</button>
+          <p className="pt-1 pb-1">
+            You're saving {totalDiscount} on this order !
+          </p>
+          <button className="btn btn-primary full-width">Proceed to Buy</button>
         </div>
-        <div class="card p-1">
+        <div className="card p-1">
           <h3>Home Address</h3>
-          <hr class="hr" />
+          <hr className="hr" />
           <p>
             D No : 11-2/33, Plot : 243, Behind Railway School, Vizag, Andhra
             Pradesh.
           </p>
-          <p class="pt-1">
+          <p className="pt-1">
             Pincode :<strong> 530199</strong>
           </p>
-          <p class="pt-1">
+          <p className="pt-1">
             Phone : <strong>9249348953</strong>
           </p>
-          <p class="pt-1">
+          <p className="pt-1">
             Email : <strong>qwerty@gmail.com</strong>
           </p>
-          <div class="flex space-between pt-1">
-            <a href="/Pages/Address/address.html" class="link">
-              <button class="btn btn-primary">Edit</button>
+          <div className="flex space-between pt-1">
+            <a href="/Pages/Address/address.html" className="link">
+              <button className="btn btn-primary">Edit</button>
             </a>
           </div>
         </div>
