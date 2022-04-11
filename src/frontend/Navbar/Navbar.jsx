@@ -40,14 +40,14 @@ export function Navbar() {
             Login
           </button>
         </Link>
-        <button
-          className={`btn btn-error ${
-            localStorage.getItem("userToken") ? "" : "hide"
-          }`}
-          onClick={logout}
+        <Link
+          to="/profile"
+          className={`link ${localStorage.getItem("userToken") ? "" : "hide"}`}
         >
-          Logout
-        </button>
+          <span className="material-icons-outlined span icon icon-size">
+            account_circle
+          </span>
+        </Link>
 
         <Link to="/wishlist" className="link">
           <div className="badge">
