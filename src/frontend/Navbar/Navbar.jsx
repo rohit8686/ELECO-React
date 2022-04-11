@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/auth-context";
-import { useCart } from "../contexts/cart-context";
-import { useProduct } from "../contexts/product-context";
-import { useWishlist } from "../contexts/wishlist-context";
+import { useCart,useProduct,useWishlist } from "../contexts/hooks-export";
 
 export function Navbar() {
   const { productDispatch } = useProduct();
   const { wishlistState } = useWishlist();
   const { wishlistData } = wishlistState;
-  const { logout } = useAuth();
   const { cartState } = useCart();
   const { cartData } = cartState;
 
