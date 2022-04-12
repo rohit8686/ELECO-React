@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/auth-context";
-import { useCart } from "../contexts/cart-context";
-import { useProduct } from "../contexts/product-context";
-import { useWishlist } from "../contexts/wishlist-context";
+import { useCart,useProduct,useWishlist } from "../contexts/hooks-export";
 
 export function Navbar() {
   const { productDispatch } = useProduct();
   const { wishlistState } = useWishlist();
   const { wishlistData } = wishlistState;
-  const { logout } = useAuth();
   const { cartState } = useCart();
   const { cartData } = cartState;
 
@@ -40,14 +36,14 @@ export function Navbar() {
             Login
           </button>
         </Link>
-        <button
-          className={`btn btn-error ${
-            localStorage.getItem("userToken") ? "" : "hide"
-          }`}
-          onClick={logout}
+        <Link
+          to="/profile"
+          className={`link ${localStorage.getItem("userToken") ? "" : "hide"}`}
         >
-          Logout
-        </button>
+          <span className="material-icons-outlined span icon icon-size">
+            account_circle
+          </span>
+        </Link>
 
         <Link to="/wishlist" className="link">
           <div className="badge">

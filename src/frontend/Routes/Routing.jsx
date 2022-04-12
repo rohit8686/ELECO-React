@@ -11,6 +11,10 @@ import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import { Product } from "../pages/Product/Product";
 import { Checkout } from "../pages/Checkout/Checkout";
 import { Address } from "../pages/Address/Address";
+import { Profile } from "../pages/Profile/Profile";
+import { AddressDetails } from "../pages/AddressDetails/AddressDetails";
+import { OrderDetails } from "../pages/OrderDetails/OrderDetails";
+import { UserProfile } from "../pages/UserProfile/UserProfile";
 
 export const Routing = () => {
   return (
@@ -25,6 +29,11 @@ export const Routing = () => {
       <Route path="/products/:productId" element={<Product />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/address" element={<Address />} />
+      <Route path="/profile" element={<Profile />}>
+        <Route index element={<UserProfile />} />
+        <Route path="addressDetails" element={<AddressDetails />} />
+        <Route path="orderDetails" element={<OrderDetails />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
