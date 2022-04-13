@@ -5,10 +5,13 @@ import {
   useCart,
   useProduct,
   useWishlist,
+  usePagination,
 } from "../../../contexts/hooks-export";
+import { Pagination } from "../../../Pagination/Pagination";
 
 export function Products() {
-  const { productState, filteredData } = useProduct();
+  const { productState } = useProduct();
+  const { paginatedData } = usePagination();
   const { wishlistState, addToWishlist, removeFromWishlist } = useWishlist();
   const { wishlistData } = wishlistState;
   const { cartState, addToCart } = useCart();
@@ -18,12 +21,12 @@ export function Products() {
     <main className="main-content p-1">
       <h2 className="text-center"> Products</h2>
       <div className="underline"></div>
-      <p className="text-center">(showing {filteredData.length} products)</p>
+      <p className="text-center">(showing {paginatedData.length} products)</p>
 
       <div className="flex space-around pt-1">
         {productState.loading && <ClipLoader />}
         {!productState.loading &&
-          filteredData.map((product) => {
+          paginatedData.map((product) => {
             const { _id, image, name, price, discount, rating } = product;
             return (
               <div className="card card-width" key={_id}>
@@ -35,7 +38,7 @@ export function Products() {
                   />
                 </Link>
                 <div className="p-1">
-                  <div className="flex space-between">
+                  <div className="flex space-between no-wrap pb-1">
                     <Link to={`/products/${_id}`} className="link">
                       <h3>{name}</h3>
                     </Link>
@@ -47,7 +50,7 @@ export function Products() {
                           ? "hide"
                           : ""
                       }`}
-                      onClick={() => addToWishlist(_id, filteredData)}
+                      onClick={() => addToWishlist(_id, paginatedData)}
                     >
                       favorite_border
                     </span>
@@ -81,7 +84,7 @@ export function Products() {
                       ? "hide"
                       : ""
                   }`}
-                  onClick={() => addToCart(_id, filteredData)}
+                  onClick={() => addToCart(_id, paginatedData)}
                 >
                   Add to Cart
                 </button>
@@ -100,6 +103,7 @@ export function Products() {
             );
           })}
       </div>
+      <Pagination />
     </main>
   );
 }
