@@ -10,6 +10,7 @@ import {
   ProductProvider,
   AddressProvider,
 } from "./frontend/contexts/providers-export";
+import { PaginationProvider } from "./frontend/contexts/pagination-context";
 
 // Call make Server
 makeServer();
@@ -21,7 +22,9 @@ ReactDOM.render(
         <WishlistProvider>
           <CartProvider>
             <AddressProvider>
-              <App />
+              <PaginationProvider>
+                <App />
+              </PaginationProvider>
             </AddressProvider>
           </CartProvider>
         </WishlistProvider>
