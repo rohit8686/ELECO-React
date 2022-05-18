@@ -1,3 +1,4 @@
+export { PaginationProvider } from "./pagination-context";
 export { AddressProvider } from "./address-context";
 export { AuthProvider } from "./auth-context";
 export { CartProvider } from "./cart-context";

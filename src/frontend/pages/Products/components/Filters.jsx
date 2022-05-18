@@ -1,4 +1,4 @@
-import { useProduct } from "../../../contexts/product-context";
+import { useProduct } from "../../../contexts/hooks-export";
 
 export function Filters() {
   const { productState, productDispatch } = useProduct();
@@ -35,7 +35,7 @@ export function Filters() {
       <p>0-{productState.price}</p>
       <h3 className="pt-1 pb-1">Category</h3>
 
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="laptops"
@@ -47,7 +47,7 @@ export function Filters() {
         />
         <label htmlFor="laptops">Laptops</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="smartphones"
@@ -61,7 +61,7 @@ export function Filters() {
         />
         <label htmlFor="smartphones">Smart phones</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="dslr"
@@ -73,7 +73,7 @@ export function Filters() {
         />
         <label htmlFor="dslr">DSLR</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="keyboards"
@@ -85,7 +85,7 @@ export function Filters() {
         />
         <label htmlFor="keyboards">Keyboards</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="mouse"
@@ -97,7 +97,7 @@ export function Filters() {
         />
         <label htmlFor="mouse">Mouse</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="checkbox"
           name="headphones"
@@ -111,10 +111,34 @@ export function Filters() {
         />
         <label htmlFor="headphones">Headphones</label>
       </div>
+      <div className="flex flex-start small-gap">
+        <input
+          type="checkbox"
+          name="speakers"
+          id="speakers"
+          onChange={() =>
+            productDispatch({ type: "CATEGORY", payload: "Speakers" })
+          }
+          checked={productState.categories.includes("Speakers") ? true : false}
+        />
+        <label htmlFor="speakers">Speakers</label>
+      </div>
+      <div className="flex flex-start small-gap">
+        <input
+          type="checkbox"
+          name="tablets"
+          id="tablets"
+          onChange={() =>
+            productDispatch({ type: "CATEGORY", payload: "Tablets" })
+          }
+          checked={productState.categories.includes("Tablets") ? true : false}
+        />
+        <label htmlFor="tablets">Tablets</label>
+      </div>
 
       <h3 className="pt-1 pb-1">Rating</h3>
 
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="rating"
@@ -126,7 +150,7 @@ export function Filters() {
         <label htmlFor="above4">4 Stars and above</label>
       </div>
 
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="rating"
@@ -136,7 +160,7 @@ export function Filters() {
         />
         <label htmlFor="above3">3 Stars and above</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="rating"
@@ -147,7 +171,7 @@ export function Filters() {
         <label htmlFor="above2">2 Stars and above</label>
       </div>
 
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="rating"
@@ -159,7 +183,7 @@ export function Filters() {
       </div>
 
       <h3 className="pt-1 pb-1">Sort By</h3>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="sort"
@@ -171,7 +195,7 @@ export function Filters() {
         />
         <label htmlFor="lowtohigh">Price - Low to High</label>
       </div>
-      <div>
+      <div className="flex flex-start small-gap">
         <input
           type="radio"
           name="sort"
