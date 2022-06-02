@@ -17,7 +17,7 @@ const initialProductState = {
   categories: [],
   rating: "",
   sort: "",
-  price: 200000,
+  price: 70000,
 };
 const ProductProvider = ({ children }) => {
   const [productsData, setProductsData] = useState([]);
