@@ -78,27 +78,35 @@ export function Products() {
                     <p className="discount">{discount}% off</p>
                   </Link>
                 </div>
-                <button
-                  className={`btn btn-primary cart-btn ${
-                    cartData.some((cartItem) => cartItem._id === _id)
-                      ? "hide"
-                      : ""
-                  }`}
-                  onClick={() => addToCart(_id, paginatedData)}
-                >
-                  Add to Cart
-                </button>
-                <Link to="/cart">
-                  <button
-                    className={`btn btn-primary cart-btn ${
-                      cartData.some((cartItem) => cartItem._id === _id)
-                        ? ""
-                        : "hide"
-                    }`}
-                  >
-                    Go to cart
-                  </button>
-                </Link>
+                {cartState.loading && cartState.loadingId === _id ? (
+                  <div className={`flex btn btn-primary cart-btn`}>
+                    <ClipLoader size={15} color={`#FFF`} />
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      className={`btn btn-primary cart-btn ${
+                        cartData.some((cartItem) => cartItem._id === _id)
+                          ? "hide"
+                          : ""
+                      }`}
+                      onClick={() => addToCart(_id, paginatedData)}
+                    >
+                      Add to Cart
+                    </button>
+                    <Link to="/cart">
+                      <button
+                        className={`btn btn-primary cart-btn ${
+                          cartData.some((cartItem) => cartItem._id === _id)
+                            ? ""
+                            : "hide"
+                        }`}
+                      >
+                        Go to cart
+                      </button>
+                    </Link>
+                  </>
+                )}
               </div>
             );
           })}

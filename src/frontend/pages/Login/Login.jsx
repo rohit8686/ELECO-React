@@ -7,7 +7,7 @@ export function Login() {
 
   return (
     <div className="flex">
-      <div className="card card-width p-2">
+      <div className="card login-card-width p-2">
         <h2 className="text-center">Login</h2>
         <form
           onSubmit={(e) => {
@@ -26,17 +26,10 @@ export function Login() {
               className="input"
               required
               value={authState.email}
-              onChange={(e) => {
-                authDispatch({ type: "EMAIL", payload: e.target.value });
-                authDispatch({
-                  type: "ERROR",
-                  payload: "",
-                });
-              }}
+              onChange={(e) =>
+                authDispatch({ type: "EMAIL", payload: e.target.value })
+              }
             />
-            {!authState.email && (
-              <p className="incorrect small-text">Please enter email address</p>
-            )}
           </div>
           <div className="pt-1">
             <label htmlFor="password">Password</label>
@@ -49,28 +42,21 @@ export function Login() {
               className="input"
               required
               value={authState.password}
-              onChange={(e) => {
-                authDispatch({
-                  type: "ERROR",
-                  payload: "",
-                });
-                authDispatch({ type: "PASSWORD", payload: e.target.value });
-              }}
+              onChange={(e) =>
+                authDispatch({ type: "PASSWORD", payload: e.target.value })
+              }
             />
-            {!authState.password && (
-              <p className="incorrect small-text">Please enter password</p>
-            )}
           </div>
           <div className="pt-1 pb-1 flex flex-start small-gap">
             <input type="checkbox" name="checkbox" id="checkbox" />
             <label htmlFor="checkbox">Remember me</label>
           </div>
-          <div className="pb-1">
+          <div>
             <Link to="/login" className="link text-info">
               Forgot your Password ?
             </Link>
           </div>
-          <button className="btn btn-primary full-width">Login</button>
+          <button className="btn btn-primary full-width mt-1">Login</button>
           &nbsp;
           <p
             className="flex outline-btn"

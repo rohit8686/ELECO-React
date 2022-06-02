@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Login } from "../Login/Login";
 import { useCart, useProduct, useWishlist } from "../../contexts/hooks-export";
 import { ToastContainer } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 function EmptyCart() {
   return <h1 className="flex pt-1">Your Cart is empty !</h1>;
@@ -43,7 +44,7 @@ export function Cart() {
       {cartData.length === 0 && <EmptyCart />}
 
       {cartData.length !== 0 && (
-        <div className="flex flex-start no-wrap cart-width cart-container pt-1 pb-1">
+        <div className="flex flex-start no-wrap cart-container pt-1 pb-1">
           <div className="flex align-self-start cartitems-container">
             {cartData.map(({ discount, _id, image, name, price }) => {
               return (
@@ -67,25 +68,31 @@ export function Cart() {
                       <p className="discount pb-1">{discount}% off</p>
                     </Link>
                     <h4 className="inline">Quantity : </h4>
-                    <button
-                      className="round-btn"
-                      onClick={() =>
-                        handleCartQuantity(_id, filteredData, "decrement")
-                      }
-                    >
-                      -
-                    </button>
-                    &nbsp;
-                    {cartData.map((item) => (item._id === _id ? item.qty : ""))}
-                    &nbsp;
-                    <button
-                      className="round-btn"
-                      onClick={() =>
-                        handleCartQuantity(_id, filteredData, "increment")
-                      }
-                    >
-                      +
-                    </button>
+                    {cartState.loading && cartState.loadingId === _id ? (
+                      <ClipLoader size={20} />
+                    ) : (
+                      <>
+                        <button
+                          className="round-btn"
+                          onClick={() =>
+                            handleCartQuantity(_id, filteredData, "decrement")
+                          }
+                        >
+                          -
+                        </button>
+                        &nbsp;
+                        {cartData.find((item) => item._id === _id).qty}
+                        &nbsp;
+                        <button
+                          className="round-btn"
+                          onClick={() =>
+                            handleCartQuantity(_id, filteredData, "increment")
+                          }
+                        >
+                          +
+                        </button>
+                      </>
+                    )}
                   </div>
                   <button
                     className="btn btn-primary cart-btn"

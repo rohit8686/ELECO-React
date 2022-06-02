@@ -9,19 +9,25 @@ const useCart = () => useContext(CartContext);
 
 const CartProvider = ({ children }) => {
   const navigate = useNavigate();
-  const initialState = { cartData: [], cartError: "" };
+  const initialState = {
+    cartData: [],
+    cartError: "",
+    orderSummary: [],
+    loading: false,
+    loadingId: "",
+  };
   const [cartState, cartDispatch] = useReducer(cartReducer, initialState);
   const { authState, authDispatch } = useAuth();
   const { userData, encodedToken } = authState;
 
-  useEffect(() => {
-    encodedToken
-      ? cartDispatch({
-          type: "CART_DATA",
-          payload: JSON.parse(localStorage.getItem("userData")).cart,
-        })
-      : cartDispatch({ type: "CLEAR_CART" });
-  }, [encodedToken]);
+  // useEffect(() => {
+  //   encodedToken
+  //     ? cartDispatch({
+  //         type: "CART_DATA",
+  //         payload: JSON.parse(localStorage.getItem("userData")).cart,
+  //       })
+  //     : cartDispatch({ type: "CLEAR_CART" });
+  // }, [encodedToken]);
 
   function cartReducer(cartState, action) {
     switch (action.type) {
@@ -29,8 +35,19 @@ const CartProvider = ({ children }) => {
         return { ...cartState, cartData: action.payload };
       case "CART_ERROR":
         return { ...cartState, cartError: action.payload };
+      case "ORDER_SUMMARY":
+        return {
+          ...cartState,
+          orderSummary: [action.payload, ...cartState.orderSummary],
+        };
+      case "LOADING":
+        return { ...cartState, loading: true };
+      case "LOADED":
+        return { ...cartState, loading: false };
+      case "LOADING_ID":
+        return { ...cartState, loadingId: action.payload };
       case "CLEAR_CART":
-        return { ...initialState };
+        return { ...cartState, cartData: [] };
       default:
         return { ...cartState };
     }
@@ -39,6 +56,8 @@ const CartProvider = ({ children }) => {
   const addToCart = async (_id, filteredData) => {
     if (localStorage.getItem("userToken")) {
       const cartItem = filteredData.find((item) => item._id === _id);
+      cartDispatch({ type: "LOADING" });
+      cartDispatch({ type: "LOADING_ID", payload: _id });
       try {
         const res = await axios.post(
           "/api/user/cart",
@@ -54,6 +73,7 @@ const CartProvider = ({ children }) => {
           type: "UPDATE_CART_DATA",
           payload: res.data.cart,
         });
+        cartDispatch({ type: "LOADED" });
         toastContainer("Added to Cart", "success");
       } catch (e) {
         cartDispatch({
@@ -89,6 +109,30 @@ const CartProvider = ({ children }) => {
       });
     }
   };
+
+  const removeAllFromCart = async () => {
+    try {
+      const res = await axios.delete(`/api/user/cart/all`, {
+        headers: { authorization: encodedToken },
+      });
+      cartDispatch({ type: "CART_DATA", payload: [] });
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({ ...userData, cart: [] })
+      );
+      authDispatch({
+        type: "UPDATE_CART_DATA",
+        payload: [],
+      });
+    } catch (e) {
+      console.log(e);
+      cartDispatch({
+        type: "CART_ERROR",
+        payload: "Failed to remove from cart",
+      });
+    }
+  };
+
   const handleCartQuantity = async (
     _id,
     filteredData,
@@ -100,6 +144,8 @@ const CartProvider = ({ children }) => {
         removeFromCart(_id, filteredData);
         return;
       }
+      cartDispatch({ type: "LOADING" });
+      cartDispatch({ type: "LOADING_ID", payload: _id });
       try {
         const res = await axios.post(
           `/api/user/cart/${_id}`,
@@ -115,6 +161,7 @@ const CartProvider = ({ children }) => {
           type: "UPDATE_CART_DATA",
           payload: res.data.cart,
         });
+        cartDispatch({ type: "LOADED" });
         incrementOrDecrement === "decrement"
           ? toastContainer("Cart quantity decremented", "info")
           : toastContainer("Cart quantity incremented", "success");
@@ -137,6 +184,7 @@ const CartProvider = ({ children }) => {
         cartDispatch,
         addToCart,
         removeFromCart,
+        removeAllFromCart,
         handleCartQuantity,
       }}
     >

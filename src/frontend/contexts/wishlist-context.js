@@ -30,15 +30,6 @@ const WishlistProvider = ({ children }) => {
   const { authState, authDispatch } = useAuth();
   const { userData, encodedToken } = authState;
 
-  useEffect(() => {
-    encodedToken
-      ? wishlistDispatch({
-          type: "WISHLIST_DATA",
-          payload: JSON.parse(localStorage.getItem("userData")).wishlist,
-        })
-      : wishlistDispatch({ type: "CLEAR_WISHLIST" });
-  }, [encodedToken]);
-
   const addToWishlist = async (_id, filteredData) => {
     if (encodedToken) {
       const wishlistItem = filteredData.find((item) => item._id === _id);

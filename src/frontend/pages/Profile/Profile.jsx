@@ -5,14 +5,14 @@ import { NavLink, Outlet } from "react-router-dom";
 export const Profile = () => {
   return (
     <div>
-      <div className="flex border">
-        <NavLink to="/profile" className="link" end>
+      <div className="flex no-gap border">
+        <NavLink to="/profile" className="link px-1" end>
           User Profile
         </NavLink>
-        <NavLink to="addressDetails" className="link">
+        <NavLink to="addressDetails" className="link px-1">
           Address
         </NavLink>
-        <NavLink to="orderDetails" className="link">
+        <NavLink to="orderDetails" className="link px-1">
           Order Details
         </NavLink>
       </div>

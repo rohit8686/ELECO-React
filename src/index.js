@@ -9,8 +9,8 @@ import {
   AuthProvider,
   ProductProvider,
   AddressProvider,
+  PaginationProvider,
 } from "./frontend/contexts/providers-export";
-import { PaginationProvider } from "./frontend/contexts/pagination-context";
 
 // Call make Server
 makeServer();

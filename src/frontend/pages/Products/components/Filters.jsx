@@ -17,7 +17,7 @@ export function Filters() {
       <h3 className="pb-1">Price</h3>
       <div className="flex space-between">
         <h6>1000</h6>
-        <h6>200000</h6>
+        <h6>70000</h6>
       </div>
       <input
         style={{ width: "100%" }}
@@ -25,14 +25,14 @@ export function Filters() {
         name="slider"
         id="slider"
         min="1000"
-        max="200000"
-        step="2000"
+        max="70000"
+        step="1000"
         value={productState.price}
         onChange={(e) =>
           productDispatch({ type: "PRICE", payload: e.target.value })
         }
       />
-      <p>0-{productState.price}</p>
+      <p>1000-{productState.price}</p>
       <h3 className="pt-1 pb-1">Category</h3>
 
       <div className="flex flex-start small-gap">
