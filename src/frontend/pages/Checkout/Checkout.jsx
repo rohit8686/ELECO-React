@@ -10,6 +10,7 @@ import "./checkout.css";
 import { ToastContainer } from "react-toastify";
 import logo from "../../images/logo.png";
 import { toastContainer } from "../../Toast/toast";
+import { ClipLoader } from "react-spinners";
 
 export const Checkout = () => {
   const { filteredData } = useProduct();
@@ -221,25 +222,33 @@ export const Checkout = () => {
                       <p className="discount pb-1">{discount}% off</p>
                     </Link>
                     <h4 className="inline">Quantity : </h4>
-                    <button
-                      className="round-btn"
-                      onClick={() =>
-                        handleCartQuantity(_id, filteredData, "decrement")
-                      }
-                    >
-                      -
-                    </button>
-                    &nbsp;
-                    {cartData.map((item) => (item._id === _id ? item.qty : ""))}
-                    &nbsp;
-                    <button
-                      className="round-btn"
-                      onClick={() =>
-                        handleCartQuantity(_id, filteredData, "increment")
-                      }
-                    >
-                      +
-                    </button>
+                    {cartState.loading && cartState.loadingId === _id ? (
+                      <ClipLoader size={20} />
+                    ) : (
+                      <>
+                        <button
+                          className="round-btn"
+                          onClick={() =>
+                            handleCartQuantity(_id, filteredData, "decrement")
+                          }
+                        >
+                          -
+                        </button>
+                        &nbsp;
+                        {cartData.map((item) =>
+                          item._id === _id ? item.qty : ""
+                        )}
+                        &nbsp;
+                        <button
+                          className="round-btn"
+                          onClick={() =>
+                            handleCartQuantity(_id, filteredData, "increment")
+                          }
+                        >
+                          +
+                        </button>
+                      </>
+                    )}
                   </div>
                   <button
                     className="btn btn-primary cart-btn"

@@ -159,9 +159,8 @@ export const removeAllItemFromCartHandler = function (schema, request) {
         }
       );
     }
-    let userCart = schema.users.findBy({ _id: userId }).cart;
     this.db.users.update({ _id: userId }, { cart: [] });
-    return new Response(200, {}, { cart: userCart });
+    return new Response(200, {}, { cart: [] });
   } catch (error) {
     return new Response(
       500,

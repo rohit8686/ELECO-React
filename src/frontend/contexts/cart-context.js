@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./auth-context";
@@ -115,7 +115,7 @@ const CartProvider = ({ children }) => {
       const res = await axios.delete(`/api/user/cart/all`, {
         headers: { authorization: encodedToken },
       });
-      cartDispatch({ type: "CART_DATA", payload: [] });
+      cartDispatch({ type: "CART_DATA", payload: res.data.cart });
       localStorage.setItem(
         "userData",
         JSON.stringify({ ...userData, cart: [] })
