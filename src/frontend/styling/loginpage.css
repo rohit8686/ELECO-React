@@ -2,6 +2,10 @@
 .full-width {
   width: 100%;
 }
+.login-card-width{
+  width: 90%;
+  max-width: 400px;
+}
 .text-info {
   color: var(--info-color);
 }
@@ -21,11 +25,18 @@
   background-color: var(--info-color);
   color: var(--white-color);
 }
+.mt-1{
+  margin-top: 1rem;
+}
 @media screen and (max-width: 500px) {
   .input::placeholder {
     font-size: 1rem;
   }
   .icon.chevron-right {
     font-size: 2rem;
+  }
+  .login-card-width {
+    width: 60%;
+    max-width: 400px;
   }
 }

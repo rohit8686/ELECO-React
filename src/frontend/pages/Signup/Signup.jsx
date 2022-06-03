@@ -7,7 +7,7 @@ export function Signup() {
 
   return (
     <div className="flex">
-      <div className="card card-width p-2">
+      <div className="card login-card-width p-2">
         <h2 className="text-center">Signup</h2>
         <form
           onSubmit={(e) => {

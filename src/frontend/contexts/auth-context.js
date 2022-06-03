@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import { toastContainer } from "../Toast/toast";
 const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
@@ -37,6 +38,7 @@ const AuthProvider = ({ children }) => {
         });
         authDispatch({ type: "RESET_FORM" });
         navigate("/");
+        setTimeout(() => toastContainer("Login successfull !", "success"), 300);
       } else if (status === 201) {
         authDispatch({ type: "ERROR", payload: "Incorrect password" });
         setTimeout(() => authDispatch({ type: "ERROR", payload: "" }), 5000);
@@ -56,6 +58,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("userData");
     authDispatch({ type: "CLEAR_AUTH_DATA" });
     navigate("/");
+    setTimeout(() => toastContainer("Logged out !", "error"), 300);
   };
 
   const signup = async () => {
@@ -74,6 +77,10 @@ const AuthProvider = ({ children }) => {
         });
         authDispatch({ type: "RESET_FORM" });
         navigate("/");
+        setTimeout(
+          () => toastContainer("Signup successfull !", "success"),
+          300
+        );
       }
     } catch (e) {
       console.log("Signup error is ", e);

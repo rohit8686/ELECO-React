@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { useProduct } from "./hooks-export";
 
 const PaginationContext = createContext();
@@ -11,6 +11,10 @@ const PaginationProvider = ({ children }) => {
   const initialState = {
     currentPage: 1,
   };
+
+  useEffect(() => {
+    paginationDispatch({ type: "CURRENT_PAGE", payload: 1 });
+  }, [filteredData]);
 
   const [paginationState, paginationDispatch] = useReducer(
     PaginationReducer,
@@ -25,7 +29,7 @@ const PaginationProvider = ({ children }) => {
   };
   const nextPage = () => {
     let { currentPage } = paginationState;
-    if (currentPage + 1 > paginatedData.length) {
+    if (currentPage + 1 >= paginatedData.length) {
       currentPage = 1;
     } else {
       ++currentPage;

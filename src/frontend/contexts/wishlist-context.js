@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { useAuth } from "./auth-context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -29,15 +29,6 @@ const WishlistProvider = ({ children }) => {
   );
   const { authState, authDispatch } = useAuth();
   const { userData, encodedToken } = authState;
-
-  useEffect(() => {
-    encodedToken
-      ? wishlistDispatch({
-          type: "WISHLIST_DATA",
-          payload: JSON.parse(localStorage.getItem("userData")).wishlist,
-        })
-      : wishlistDispatch({ type: "CLEAR_WISHLIST" });
-  }, [encodedToken]);
 
   const addToWishlist = async (_id, filteredData) => {
     if (encodedToken) {

@@ -3,6 +3,7 @@ import "../../styling/productpage.css";
 import { Link, useParams } from "react-router-dom";
 import { useCart, useWishlist, useProduct } from "../../contexts/hooks-export";
 import { ToastContainer } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 export const Product = () => {
   const { productId } = useParams();
@@ -37,27 +38,33 @@ export const Product = () => {
               </p>
               <p>Rating : {rating}/5</p>
               <p className="discount pb-1">Discount : {discount}% off</p>
-              <button
-                className={`btn btn-error ${
-                  cartData.some((cartItem) => cartItem._id === productId)
-                    ? "hide"
-                    : ""
-                }`}
-                onClick={() => addToCart(productId, filteredData)}
-              >
-                Add to Cart
-              </button>
-              <Link to="/cart">
-                <button
-                  className={`btn btn-error ${
-                    cartData.some((cartItem) => cartItem._id === productId)
-                      ? ""
-                      : "hide"
-                  }`}
-                >
-                  Go to cart
-                </button>
-              </Link>
+              {cartState.loading && cartState.loadingId === productId ? (
+                <ClipLoader size={15} />
+              ) : (
+                <>
+                  <button
+                    className={`btn btn-error ${
+                      cartData.some((cartItem) => cartItem._id === productId)
+                        ? "hide"
+                        : ""
+                    }`}
+                    onClick={() => addToCart(productId, filteredData)}
+                  >
+                    Add to Cart
+                  </button>
+                  <Link to="/cart">
+                    <button
+                      className={`btn btn-error ${
+                        cartData.some((cartItem) => cartItem._id === productId)
+                          ? ""
+                          : "hide"
+                      }`}
+                    >
+                      Go to cart
+                    </button>
+                  </Link>
+                </>
+              )}
               &nbsp;
               <button
                 className={`btn btn-primary ${

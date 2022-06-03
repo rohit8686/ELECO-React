@@ -11,7 +11,7 @@ export const products = [
     image:
       "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_IN?wid=1280&hei=1190&fmt=jpeg&qlt=80&.v=1632948896000",
     name: "Mac book pro",
-    price: 194900,
+    price: 75100,
     discount: 8,
     category: "Laptops",
     rating: 4.8,
@@ -44,7 +44,7 @@ export const products = [
     image:
       "https://m.media-amazon.com/images/I/61jLiCovxVL._AC_UY327_FMwebp_QL65_.jpg",
     name: "iphone 13",
-    price: 80709,
+    price: 50709,
     discount: 5,
     category: "Smart phones",
     rating: 2,
@@ -61,7 +61,7 @@ export const products = [
     image:
       "https://m.media-amazon.com/images/I/71lT-zWEYkL._AC_UL480_FMwebp_QL65_.jpg",
     name: "Asus Zenbook 14",
-    price: 93731,
+    price: 55731,
     discount: 5,
     category: "Laptops",
     rating: 4.7,
@@ -78,7 +78,7 @@ export const products = [
     image:
       "https://m.media-amazon.com/images/I/914hFeTU2-L._AC_UY327_FMwebp_QL65_.jpg",
     name: "Canon EOS 1500D",
-    price: 60497,
+    price: 35497,
     discount: 5,
     category: "DSLR",
     rating: 3.4,
@@ -145,7 +145,7 @@ export const products = [
     image:
       "https://m.media-amazon.com/images/I/61xeIT6UHrL._AC_UY327_FMwebp_QL65_.jpg",
     name: "boat bassheads",
-    price: 8976,
+    price: 5976,
     discount: 4,
     category: "Headphones",
     rating: 1.4,
@@ -193,7 +193,7 @@ export const products = [
     _id: uuid(),
     image: "https://m.media-amazon.com/images/I/51WSSbntwKL._SX679_.jpg",
     name: "Lenovo Tab K10",
-    price: 16000,
+    price: 11000,
     discount: 3,
     category: "Tablets",
     rating: 3.9,
@@ -209,7 +209,7 @@ export const products = [
     _id: uuid(),
     image: "https://m.media-amazon.com/images/I/814AjiAo5GL._SX679_.jpg",
     name: "Lenovo Yoga Smart Tablet",
-    price: 18999,
+    price: 14999,
     discount: 6,
     category: "Tablets",
     rating: 4.1,

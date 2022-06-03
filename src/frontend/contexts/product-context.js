@@ -17,7 +17,7 @@ const initialProductState = {
   categories: [],
   rating: "",
   sort: "",
-  price: 200000,
+  price: 70000,
 };
 const ProductProvider = ({ children }) => {
   const [productsData, setProductsData] = useState([]);
@@ -32,7 +32,7 @@ const ProductProvider = ({ children }) => {
           categories: [],
           rating: "",
           sort: "",
-          price: 200000,
+          price: 70000,
         };
       case "PRICE":
         return { ...productState, price: action.payload };
